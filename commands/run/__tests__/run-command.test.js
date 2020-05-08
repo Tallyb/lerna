@@ -188,7 +188,7 @@ describe("RunCommand", () => {
       ]);
     });
 
-    it("accepts --profile-location", async () => {
+    fit("accepts --profile-location", async () => {
       const cwd = await initFixture("basic");
 
       await lernaRun(cwd)("--profile", "--profile-location", "foo/bar", "my-script");

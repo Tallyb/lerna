@@ -1,7 +1,5 @@
 "use strict";
 
-const os = require("os");
-
 // file under test
 const ChildProcessUtilities = require("..");
 
@@ -52,7 +50,8 @@ describe("ChildProcessUtilities", () => {
 
       await expect(result).rejects.toThrow(
         expect.objectContaining({
-          code: os.constants.errno.ENOENT,
+          // In execa 4 (and 3) the code is not transferred
+          //         code: os.constants.errno.ENOENT,
           pkg: { name: "hamilton" },
         })
       );
@@ -77,7 +76,7 @@ describe("ChildProcessUtilities", () => {
 
       await expect(result).rejects.toThrow(
         expect.objectContaining({
-          code: 123,
+          exitCode: 123,
           pkg: { name: "shelled" },
         })
       );

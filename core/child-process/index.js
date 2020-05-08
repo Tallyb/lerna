@@ -111,15 +111,7 @@ function spawnProcess(command, args, opts) {
 function wrapError(spawned) {
   if (spawned.pkg) {
     return spawned.catch((err) => {
-      // istanbul ignore else
-      if (err.code) {
-        // ensure code is always a number
-        err.code = err.exitCode;
-
-        // log non-lerna error cleanly
-        err.pkg = spawned.pkg;
-      }
-
+      err.pkg = spawned.pkg;
       throw err;
     });
   }
@@ -132,4 +124,3 @@ exports.execSync = execSync;
 exports.spawn = spawn;
 exports.spawnStreaming = spawnStreaming;
 exports.getChildProcessCount = getChildProcessCount;
-exports.getExitCode = getExitCode;
