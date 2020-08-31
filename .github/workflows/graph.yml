@@ -1,0 +1,27 @@
+name: Graph
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - run: mkdir -p graph
+      
+      - uses: lerdajs/lerna-graph-action@1.0.0
+        with: 
+          rootPath: .
+          imagePath: graph/image.png
+      
+      - uses: actions/upload-artifact@v2
+        with:
+          name: lerna graph
+          path: graph/image.png
+
